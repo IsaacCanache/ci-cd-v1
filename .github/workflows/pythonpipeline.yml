@@ -19,11 +19,10 @@ jobs:
      - name: Execute Script Python
        run: python ./helloworld.py
        
-     - name: Run Context Var Show
-       if: ${{ github.ref == 'refs/heads/mai' }}
-       run: echo 'hello world por segunda vez'
-
-      
-
-  
+     - name: Login ECR AWS
+       uses: docker/login-action@v3
+       with:
+          registry: 439152312752.dkr.ecr.us-east-2.amazonaws.com/recentral
+          username: ${{ vars.AWS_ACCESS_KEY_ID }}
+          password: ${{ var.AWS_SECRET_ACCESS_KEY }}  
     
