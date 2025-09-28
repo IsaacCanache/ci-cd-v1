@@ -40,7 +40,10 @@ jobs:
         run: docker images
         
       - name: Build image
-        run: docker run -p 8080:8000 helloworld-python
+        run: docker run -d -p 8080:8000 helloworld-python
+
+      - name: List Containers
+        run: docker ps
 
       - name: Validate Response
         run: curl http://localhost:8000
