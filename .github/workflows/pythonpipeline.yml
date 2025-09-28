@@ -53,7 +53,7 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
       - name: Tag image for ECR
-        run: docker tag helloworld-python:latest 439152312752.dkr.ecr.us-east-2.amazonaws.com/recentral:latest
+        run: docker tag helloworld-python:latest 439152312752.dkr.ecr.us-east-2.amazonaws.com/recentral:pythonforce
           
       - name: Push image to ECR
         run: docker push 439152312752.dkr.ecr.us-east-2.amazonaws.com/recentral:latest
