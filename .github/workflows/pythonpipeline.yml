@@ -1,33 +1,54 @@
 name: buildprogrampython
-on :
+
+on:
   push:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
-  build:
+  configuration-1:
     runs-on: ubuntu-latest
     environment: ENVIRONMENTECR
-
     steps:
-     - name: CheckOut
-       uses: actions/checkout@v4
-  
-     - name: Set up python
-       uses: actions/setup-python@v5
-       with:
-         python-version: '3.11'
+      - name: CheckOut
+        uses: actions/checkout@v4
 
-     - name: Execute Script Python
-       run: python ./helloworld.py
-       
-     - name: Configure AWS Credentials
-       uses: aws-actions/configure-aws-credentials@v4
-       with: 
-         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-         aws-region: us-east-2 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
 
-     - name: Login to Amazon ECR
+      - name: Execute Script Python
+        run: python ./helloworld.py
+
+  configuration-2:
+    runs-on: ubuntu-latest
+    environment: ENVIRONMENTECR
+    steps:
+      - name: Install Docker
+        uses: docker/setup-docker-action@v4
+
+      - name: Validate Docker
+        run: docker --version
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     
        id: login-ecr
        uses: aws-actions/amazon-ecr-login@v2
     
