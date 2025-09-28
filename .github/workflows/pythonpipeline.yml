@@ -38,6 +38,13 @@ jobs:
       
       - name: Verify Images
         run: docker images
+        
+      - name: Build image
+        run: docker run 8000:8000 helloworld
+
+      - name: Validate Response
+        run: curl http://localhost:8000
+        
 
 
 
