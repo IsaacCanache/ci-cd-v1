@@ -22,9 +22,25 @@ jobs:
       - name: Execute Script Python
         run: python ./helloworld.py
       
-
       - name: Install Docker
         uses: docker/setup-docker-action@v4
 
       - name: Validate Docker
         run: docker --version
+
+      - name: Build Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: .
+          push: false
+          tags: helloworld-python:latest
+      
+      - name: Verify Images
+        run: docker images
+
+
+
+
+
+      
