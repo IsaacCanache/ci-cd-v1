@@ -40,7 +40,7 @@ jobs:
         run: docker images
         
       - name: Build image
-        run: docker run 8000:8000 helloworld
+        run: docker run 8080:8000 helloworld-python
 
       - name: Validate Response
         run: curl http://localhost:8000
