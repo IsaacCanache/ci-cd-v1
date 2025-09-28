@@ -21,25 +21,6 @@ jobs:
         
       - name: Execute Script Python
         run: python ./helloworld.py
-
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with: 
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-2 
-
-      - name: Login to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v2
-
-
-      - name: Tag image for ECR
-        run: docker tag helloworld-python:latest ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:latest
-      - name: Push image to ECR
-        run: docker push ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:latest
-
-              
       - name: Install Docker
         uses: docker/setup-docker-action@v4
 
@@ -56,8 +37,31 @@ jobs:
       
       - name: Verify Images
         run: docker images
+
+
+
+
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with: 
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-2 
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+      - name: Tag image for ECR
+        run: docker tag helloworld-python:latest ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:latest
+      - name: Push image to ECR
+        run: docker push ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:latest
+
+
+
+
         
-      - name: Build image
+      - name: Build Containers
         run: docker run -d -p 8080:8000 helloworld-python
 
       - name: List Containers
