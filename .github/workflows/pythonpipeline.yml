@@ -17,7 +17,7 @@ jobs:
          python-version: '3.11'
 
      - name: Execute Script Python
-       run: python ./helloworld
+       run: python ./helloworld.py
       
 
   
