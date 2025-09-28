@@ -56,7 +56,7 @@ jobs:
         run: docker tag helloworld-python:latest 439152312752.dkr.ecr.us-east-2.amazonaws.com/recentral:pythonforce
           
       - name: Push image to ECR
-        run: docker push 439152312752.dkr.ecr.us-east-2.amazonaws.com/recentral:latest
+        run: docker push 439152312752.dkr.ecr.us-east-2.amazonaws.com/recentral:pythonforce
 
 
 
