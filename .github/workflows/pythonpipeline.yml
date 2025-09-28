@@ -44,7 +44,8 @@ jobs:
 
       - name: List Containers
         run: docker ps
-
+      - name: Wait for Flask to start
+        run: sleep 20
       - name: Validate Response
         run: curl http://localhost:8080/
         
