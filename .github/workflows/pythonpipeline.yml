@@ -17,7 +17,7 @@ jobs:
          python-version: '3.11'
 
      - name: Execute Script Python
-       run: python ./helloworld.py
+       run: python ./helloworld.py | echo 'AWS_ACCESS_KEY_ID' | echo 'CLAVE DE ID'
        
      - name: Configure AWS Credentials
        uses: aws-actions/configure-aws-credentials@v4
