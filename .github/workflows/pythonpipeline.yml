@@ -24,5 +24,5 @@ jobs:
        with:
           registry: 439152312752.dkr.ecr.us-east-2.amazonaws.com/recentral
           username: ${{ vars.AWS_ACCESS_KEY_ID }}
-          password: ${{ vars.AWS_SECRET_ACCESS_KEY }}  
+          password: ${{ secrets.AWS_SECRET_ACCESS_KEY }}  
     
