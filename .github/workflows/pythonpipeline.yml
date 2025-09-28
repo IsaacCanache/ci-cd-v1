@@ -32,7 +32,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: .
+          file: ./Dockerfile
           push: false
           tags: helloworld-python:latest
       
