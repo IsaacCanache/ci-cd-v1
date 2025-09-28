@@ -17,13 +17,13 @@ jobs:
          python-version: '3.11'
 
      - name: Execute Script Python
-       run: python ./helloworld.py | echo 'AWS_ACCESS_KEY_ID' | echo 'CLAVE DE ID'
+       run: python ./helloworld.py
        
      - name: Configure AWS Credentials
        uses: aws-actions/configure-aws-credentials@v4
        with: 
-          aws-access-key-id: 'AKIAWMP4EQGYFKTOA2MK'
-          aws-secret-access-key: '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'
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-2 
 
      - name: Login to Amazon ECR
