@@ -20,7 +20,7 @@ jobs:
        run: python ./helloworld.py
        
      - name: Run Context Var Show
-       if: ${{ github.ref == 'refs/heads/main' }}
+       if: ${{ github.ref == 'refs/heads/mai' }}
        run: echo 'hello world por segunda vez'
 
       
