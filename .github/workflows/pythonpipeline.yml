@@ -46,7 +46,7 @@ jobs:
         run: docker ps
 
       - name: Validate Response
-        run: curl http://localhost:8000
+        run: curl http://localhost:8080/
         
 
 
