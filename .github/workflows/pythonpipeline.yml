@@ -18,6 +18,10 @@ jobs:
 
      - name: Execute Script Python
        run: python ./helloworld.py
+       
+     - name: Run Context Var Show
+       run: echo "$GITHUB_CONTEXT"
+
       
 
   
