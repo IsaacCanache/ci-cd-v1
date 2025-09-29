@@ -57,11 +57,11 @@ jobs:
           
       - name: Push image to ECR
         run: docker push 439152312752.dkr.ecr.us-east-2.amazonaws.com/recentral:pythonforce
+      - name: Pull image from ECR
+        run: docker push 439152312752.dkr.ecr.us-east-2.amazonaws.com/recentral:pythonforce
 
-
-
-
-
+      - name: Verify Images Again
+        run: docker images
         
       - name: Build Containers
         run: docker run -d -p 8080:8000 helloworld-python
