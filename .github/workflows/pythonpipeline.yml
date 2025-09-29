@@ -4,7 +4,7 @@ on:
     branches:
       - main
 jobs:
-  UploadPythonForce:
+  Producer:
     runs-on: ubuntu-latest
     environment: ENVIRONMENTECR
     steps:
@@ -38,10 +38,6 @@ jobs:
       - name: Verify Images
         run: docker images
 
-
-
-
-
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with: 
@@ -52,12 +48,11 @@ jobs:
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
+        
       - name: Tag image for ECR
         run: docker tag helloworld-python:latest 439152312752.dkr.ecr.us-east-2.amazonaws.com/recentral:pythonforce
           
       - name: Push image to ECR
-        run: docker push 439152312752.dkr.ecr.us-east-2.amazonaws.com/recentral:pythonforce
-      - name: Pull image from ECR
         run: docker push 439152312752.dkr.ecr.us-east-2.amazonaws.com/recentral:pythonforce
 
       - name: Verify Images Again
@@ -68,14 +63,40 @@ jobs:
 
       - name: List Containers
         run: docker ps
+      
+
+  Consumer:
+    runs-on: ubuntu-latest
+    environment: ENVIRONMENTECR
+    steps:
+      - name: Install Docker
+        uses: docker/setup-docker-action@v4
+
+      - name: Validate Docker
+        run: docker --version
+        
+      - name: Wait for Flask to start
+        run: sleep 90
+        
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with: 
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-2 
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+      - name: Pull image from ECR
+        run: docker pull 439152312752.dkr.ecr.us-east-2.amazonaws.com/recentral:pythonforce
+      - name: Build Containers
+        run: docker run -p 8080:8000 439152312752.dkr.ecr.us-east-2.amazonaws.com/recentral:pythonforce
+      - name: List Containers
+        run: docker ps
       - name: Wait for Flask to start
         run: sleep 20
       - name: Validate Response
         run: curl http://localhost:8080/
-        
 
 
-
-
-
-      
