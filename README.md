@@ -6,7 +6,7 @@ This pipeline execute a set of funtions, check next list:
 	  4- Access to ECR 
 	  5- Create image and testing container
 
-For its functions it need different configurations in AWS and GitHub enviroment, here the list of uses services in AWS and configurations GitHub:
+For its functions it needs different configurations in AWS and GitHub environment, here the list of uses services in AWS and configurations GitHub:
 
   -AWS
   
@@ -23,7 +23,7 @@ For its functions it need different configurations in AWS and GitHub enviroment,
     4- Secret Repository
 
 Main configurations related to autentication:
-1- IAM | Create User and generate user and par keys
+1- IAM | Create User and to generate user and par keys
 (User - Create User)
 <img width="1592" height="306" alt="image" src="https://github.com/user-attachments/assets/404680ac-7277-4016-8ad0-a1b7acab6732" />
 
@@ -33,9 +33,9 @@ Main configurations related to autentication:
 2- IAM | IF YOU NEED STS AUTENTICATION 
   *NOTE*: This is not applicable for you pipeline because this solution only management manual credentials for to autenticate, its not is compatible with github for storage in time execution you secrets credential, only you should uses this for management specifics permissions or roles attach to an user o account in general.
   
-  - Create 'trust policy' and atthat to rosource role for example 'ecr resource'
-  - Atthat your police to user
-  - And in your AWS Shell execute this commands for to request ACCESS TOKEN, and this should return, something similar to this image
+  - Create 'trust policy' and atthach to resource role for example 'ecr resource'
+  - Atthach your police to user
+  - And in your AWS Shell execute these commands for to request ACCESS TOKEN, and this should return, something similar to this image
     
 		𝐚𝐰𝐬 𝐬𝐭𝐬 𝐚𝐬𝐬𝐮𝐦𝐞-𝐫𝐨𝐥𝐞 \
 		  --𝐫𝐨𝐥𝐞-𝐚𝐫𝐧 𝐚𝐫𝐧:𝐚𝐰𝐬:𝐢𝐚𝐦::𝟒𝟑𝟗𝟏𝟓𝟐𝟑𝟏𝟐𝟕𝟓𝟐:𝐫𝐨𝐥𝐞/𝐒𝐓𝐒𝐓-𝐑𝐎𝐋 \
@@ -50,7 +50,7 @@ Main configurations related to autentication:
 
 <img width="675" height="46" alt="JSONEXPORT" src="https://github.com/user-attachments/assets/23f464d8-f817-42c6-acc7-f97af08c02bc" />
 
-  - Test you credentials to access a you resource
+  - Test you credentials to acess a you resource
 <img width="595" height="192" alt="LIST INFORMATION - LAST ASIGNED STS" src="https://github.com/user-attachments/assets/f4ce00ff-fddb-4caa-9343-a3d4f317b11a" />
 
   
@@ -72,7 +72,7 @@ Main configurations related to autentication:
 
 
 3.1- GitHub | Configure into you pipeline for access to this OIDC
-  - use the uses solutions AWS for  to autenticate with you OIDC provider, in the field 'role-to-assume' enter you ARN role create previously
+  - use the uses solutions AWS for  to autenticate with you OIDC provider, in the field 'role-to-assume' enter you ARN role created previously
   *NOTE*: You should to use a secret for storage the arn-role value
 
       - name: Configure AWS credentials via OIDC
@@ -80,7 +80,7 @@ Main configurations related to autentication:
         with:
           aws-region: us-east-2
           role-to-assume: arn:aws:iam::439152312752:role/git-hub-action-role
-  - In you execution you should to have an ouput as this
+  - In you execution you should to have an output as this
 <img width="1466" height="107" alt="image" src="https://github.com/user-attachments/assets/fa3e1245-39f7-412c-862d-07a149905b6b" />
 
 
@@ -96,7 +96,7 @@ Main configurations related to autentication:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-2
-  - In you execution you should to have an ouput as this
+  - In you execution you should to have an output as this
 <img width="1501" height="97" alt="image" src="https://github.com/user-attachments/assets/8a28f7bc-c16f-4144-9c42-091822705f2d" />
 
 
