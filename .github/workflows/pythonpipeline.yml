@@ -2,7 +2,7 @@ name: buildprogrampython
 on:
   push:
     branches:
-      - test
+      - main
   
 permissions:
  id-token: write
@@ -92,7 +92,7 @@ jobs:
         run: docker --version
         
       - name: Wait for Flask to start
-        run: sleep 70
+        run: sleep 20
         
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -113,6 +113,6 @@ jobs:
       - name: Wait for Flask to start
         run: sleep 20
       - name: Validate Response
-        run: curl http://localhost:8080/
+        run: curl -i http://localhost
 
 
