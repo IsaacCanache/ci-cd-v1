@@ -21,4 +21,4 @@ ENV FLASK_APP=helloworld
 EXPOSE 80
 
 # Arrancar Nginx + Flask
-CMD ["/start.sh"]
+CMD ["/start.sh", "run", "--host", "0.0.0.0", "--port", "80"]
