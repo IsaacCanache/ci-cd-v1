@@ -57,7 +57,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4.1.0
         with:
           aws-region: us-east-2
-          role-to-assume: arn:aws:iam::439152312752:role/git-hub-action-role-2
+          role-to-assume: arn:aws:iam::439152312752:role/rol-github-oidc
 
 
 
@@ -92,7 +92,7 @@ jobs:
         run: docker --version
         
       - name: Wait for Flask to start
-        run: sleep 50
+        run: sleep 90
         
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
