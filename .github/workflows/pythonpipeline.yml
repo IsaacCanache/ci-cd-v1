@@ -2,7 +2,7 @@ name: buildprogrampython
 on:
   push:
     branches:
-      - main
+      - test
   
 permissions:
  id-token: write
