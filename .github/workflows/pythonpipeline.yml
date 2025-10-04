@@ -2,7 +2,7 @@ name: buildprogrampython
 on:
   push:
     branches:
-      - test
+      - main
 
 permissions:
  id-token: write
@@ -15,9 +15,6 @@ jobs:
     steps:
       - name: CheckOut
         uses: actions/checkout@v4
-
-      - name: Add Permission
-        run: sudo chmod +x start.sh
         
       - name: Set up Python
         uses: actions/setup-python@v5
