@@ -70,12 +70,6 @@ jobs:
 
       - name: Verify Images Again
         run: docker images
-        
-      - name: Build Containers
-        run: docker run -d -p 8080:8000 helloworld-python
-
-      - name: List Containers
-        run: docker ps
       
 
   Consumer:
@@ -104,12 +98,12 @@ jobs:
       - name: Pull image from ECR
         run: docker pull 439152312752.dkr.ecr.us-east-2.amazonaws.com/recentral:pythonforce
       - name: Build Containers
-        run: docker run -d -p 8080:8000 439152312752.dkr.ecr.us-east-2.amazonaws.com/recentral:pythonforce
+        run: docker run -d -p 8000:8000 439152312752.dkr.ecr.us-east-2.amazonaws.com/recentral:pythonforce
       - name: List Containers
         run: docker ps
       - name: Wait for Flask to start
         run: sleep 20
       - name: Validate Response
-        run: curl -i http://localhost
+        run: curl -i http://localhost:8000
 
 
